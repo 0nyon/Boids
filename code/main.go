@@ -38,7 +38,6 @@ func main() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.White)
 		rl.DrawTextureEx(fih, position, rotation, scale, rl.White)
-		rl.DrawTextureEx(fih, rl.NewVector2(100, 110), rotation, scale, rl.White)
 		rl.EndDrawing()
 	}
 }
