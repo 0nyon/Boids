@@ -6,11 +6,38 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+// ! running constants here
 const shouldCloseAfter5Sec bool = true
+const screenSize uint = 500
+const textureScale float32 = 2
+
+var boidTexture rl.Texture2D
 
 func main() {
 
-	if shouldCloseAfter5Sec {
+	applyTimeout(true)
+
+	allBoids := createAllBoids(&boidTexture)
+
+	for !rl.WindowShouldClose() {
+		moveAllBoids(allBoids)
+		renderAllBoids(allBoids)
+	}
+
+	rl.UnloadTexture(boidTexture)
+}
+
+// in go the init function is always called before main for setup stuff
+func init() {
+	rl.InitWindow(int32(screenSize), int32(screenSize), "boids")
+	rl.SetTargetFPS(60)
+
+	boidTexture = rl.LoadTexture("assets/clown-fish.png")
+}
+
+func applyTimeout(yes bool) {
+	if yes {
+
 		go func() {
 			after := time.After(time.Second * 5)
 			select {
@@ -19,25 +46,23 @@ func main() {
 			}
 		}()
 	}
+}
 
-	rl.InitWindow(500, 500, "boids")
-	rl.SetTargetFPS(60)
+func renderAllBoids(boids []boid) {
+	rl.BeginDrawing()
+	defer rl.EndDrawing()
 
-	fih := rl.LoadTexture("assets/clown-fish.png")
-	defer rl.UnloadTexture(fih)
+	rl.ClearBackground(rl.White)
+	for i := range boids {
+		//rl.DrawTextureEx(boidTexture, b.posVec, b.getLookingAngle(), textureScale, rl.White)
+		rl.DrawRectangle(int32(boids[i].posVec.X), int32(boids[i].posVec.Y), 10, 10, rl.Blue)
+	}
+}
 
-	for !rl.WindowShouldClose() {
-		//this is how you render a fish img, raylib provided a vector struct which is nice, i'll implement all the fun boids stuff tommorow, for now this
-		//remains here as an exmaple
-		position := rl.NewVector2(100, 100)
-
-		rotation := float32(0.0)
-
-		scale := float32(2.0)
-
-		rl.BeginDrawing()
-		rl.ClearBackground(rl.White)
-		rl.DrawTextureEx(fih, position, rotation, scale, rl.White)
-		rl.EndDrawing()
+func moveAllBoids(boids []boid) {
+	applyAllRules(boids)
+	for i := range boids {
+		//todo: apply bounds checking
+		boids[i].posVec = boids[i].posVec.Add(boids[i].velocityVec)
 	}
 }
