@@ -9,13 +9,18 @@ import (
 // ! running constants here
 const shouldCloseAfter5Sec bool = false
 const screenSize uint = 800
-const textureScale float32 = 1
+const textureScale float32 = 1.7
+const backgroundTextureScale float32 = 8
 
 var boidTexture rl.Texture2D
+var backgroundTexture rl.Texture2D
 
 func main() {
-	boidTexture = rl.LoadTexture("../assets/clown-fish.png")
+	boidTexture = rl.LoadTexture("../assets/bird.png")
+	backgroundTexture = rl.LoadTexture("../assets/background.png")
 	defer rl.UnloadTexture(boidTexture)
+	defer rl.UnloadTexture(backgroundTexture)
+
 	applyTimeout(shouldCloseAfter5Sec)
 
 	all := createAllBoids(&boidTexture)
@@ -24,6 +29,7 @@ func main() {
 
 		applyAllRules(all)
 		rl.ClearBackground(rl.White)
+		rl.DrawTextureEx(backgroundTexture, rl.Vector2{X: 0, Y: 0}, 0, backgroundTextureScale, rl.White)
 		renderAllBoids(all, &boidTexture)
 	}
 }

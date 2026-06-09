@@ -8,14 +8,14 @@ import (
 )
 
 // ! all constants here
-const boidAmnt uint = 150
-const protectedRange uint = 10
+const boidAmnt uint = 190
+const protectedRange uint = 15
 const visableRange uint = 60
 const avoidFactor float32 = 0.4
-const matchingFactor float32 = 0.2
-const centeringFactor float32 = 0.007
+const matchingFactor float32 = 0.3
+const centeringFactor float32 = 0.009
 const maxSpeed float32 = 4
-const minSpeed float32 = maxSpeed - 3
+const minSpeed float32 = maxSpeed - 2
 const turnFactor float32 = 0.3
 const borderPadding uint = 150
 
