@@ -158,3 +158,5 @@ func applyAllRules(boids []boid) {
 		b.velocityVec = steeringForEachBoid[i].Add(b.velocityVec).Normalize()
 	}
 }
+
+//this should be only in rewrite

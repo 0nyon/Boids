@@ -14,8 +14,8 @@ const textureScale float32 = 2
 var boidTexture rl.Texture2D
 
 func main() {
-
-	applyTimeout(true)
+	boidTexture = rl.LoadTexture("assets/clown-fish.png")
+	applyTimeout(shouldCloseAfter5Sec)
 
 	allBoids := createAllBoids(&boidTexture)
 
@@ -32,7 +32,6 @@ func init() {
 	rl.InitWindow(int32(screenSize), int32(screenSize), "boids")
 	rl.SetTargetFPS(60)
 
-	boidTexture = rl.LoadTexture("assets/clown-fish.png")
 }
 
 func applyTimeout(yes bool) {
@@ -54,6 +53,7 @@ func renderAllBoids(boids []boid) {
 
 	rl.ClearBackground(rl.White)
 	for i := range boids {
+		//b := boids[i]
 		//rl.DrawTextureEx(boidTexture, b.posVec, b.getLookingAngle(), textureScale, rl.White)
 		rl.DrawRectangle(int32(boids[i].posVec.X), int32(boids[i].posVec.Y), 10, 10, rl.Blue)
 	}
