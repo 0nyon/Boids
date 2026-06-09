@@ -67,8 +67,3 @@ func (this *boid) getAllboidsInTooCloseRange(allBoids []boid) []boid {
 	}
 	return res
 }
-
-func (b *boid) getLookingAngle() float32 {
-	return 360 * (b.velocityVec.Angle(rl.Vector2{X: 1, Y: 0}))
-}
-
