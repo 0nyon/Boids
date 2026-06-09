@@ -8,21 +8,14 @@ import (
 
 // ! running constants here
 const shouldCloseAfter5Sec bool = true
-const screenSize uint = 500
+const screenSize uint = 800
 const textureScale float32 = 2
 
 var boidTexture rl.Texture2D
 
 func main() {
-	boidTexture = rl.LoadTexture("assets/clown-fish.png")
+	boidTexture = rl.LoadTexture("../assets/clown-fish.png")
 	applyTimeout(shouldCloseAfter5Sec)
-
-	allBoids := createAllBoids(&boidTexture)
-
-	for !rl.WindowShouldClose() {
-		moveAllBoids(allBoids)
-		renderAllBoids(allBoids)
-	}
 
 	rl.UnloadTexture(boidTexture)
 }
@@ -32,6 +25,8 @@ func init() {
 	rl.InitWindow(int32(screenSize), int32(screenSize), "boids")
 	rl.SetTargetFPS(60)
 
+	for !rl.WindowShouldClose() {
+	}
 }
 
 func applyTimeout(yes bool) {
@@ -44,25 +39,5 @@ func applyTimeout(yes bool) {
 				panic("enough time")
 			}
 		}()
-	}
-}
-
-func renderAllBoids(boids []boid) {
-	rl.BeginDrawing()
-	defer rl.EndDrawing()
-
-	rl.ClearBackground(rl.White)
-	for i := range boids {
-		//b := boids[i]
-		//rl.DrawTextureEx(boidTexture, b.posVec, b.getLookingAngle(), textureScale, rl.White)
-		rl.DrawRectangle(int32(boids[i].posVec.X), int32(boids[i].posVec.Y), 10, 10, rl.Blue)
-	}
-}
-
-func moveAllBoids(boids []boid) {
-	applyAllRules(boids)
-	for i := range boids {
-		//todo: apply bounds checking
-		boids[i].posVec = boids[i].posVec.Add(boids[i].velocityVec)
 	}
 }
