@@ -59,6 +59,6 @@ func renderAllBoids(all []boid, texture *rl.Texture2D) {
 
 	len := len(all)
 	for i := 0; i < len; i++ {
-		rl.DrawTextureEx(*texture, all[i].posVec, all[i].getRotation(), textureScale, rl.White)
+		rl.DrawTextureEx(*texture, all[i].posVec, all[i].getRotation(), textureScale, rl.Gray)
 	}
 }
