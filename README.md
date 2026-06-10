@@ -4,35 +4,34 @@ A 2D flocking simulation built in Go utilizing Craig Reynolds' Boids algorithm. 
 
 ## Features
 
-*   **Emergent Behavior:** Watch individual boids interact using simple local rules to form complex, lifelike flocking patterns.
-*   **Concurrent Architecture:** Uniquely structured so that each boid runs independently via native Go concurrency, rather than sequentially through a single thread.
-*   **Real-time 2D Visualization:** Smooth, high-performance rendering powered by Raylib.
+* **Emergent Behavior:** Watch individual boids interact using simple local rules to form complex, lifelike flocking patterns.
+* **Concurrent Architecture:** Uniquely structured so that each boid runs independently via native Go concurrency, rather than sequentially through a single thread.
+* **Real-time 2D Visualization:** Smooth, high-performance rendering powered by Raylib.
 
 ## The Three Rules of Flocking
 
 The simulation relies on three fundamental steering behaviors applied to each boid based on its local neighborhood:
 
-1.  **Separation:** Steer to avoid crowding or colliding with local flockmates.
-2.  **Alignment:** Steer towards the average heading and velocity of local flockmates.
-3.  **Cohesion:** Steer toward the "center of mass" (average position) of local flockmates.
+1. **Separation:** Steer to avoid crowding or colliding with local flockmates.
+2. **Alignment:** Steer towards the average heading and velocity of local flockmates.
+3. **Cohesion:** Steer toward the "center of mass" (average position) of local flockmates.
 
 ## Prerequisites
 
 Before running the project, ensure you have the following installed on your system:
 
-*   **Go** (version 1.18 or higher recommended)
-*   **CGO Dependencies:** Raylib-go requires a C compiler (like `gcc`) for compiling the underlying graphics bindings.
-    *   *Ubuntu/Debian:* `sudo apt-get install alsa-utils libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libxkbcommon-dev`
-    *   *macOS:* Xcode Command Line Tools are required (`xcode-select --install`).
-    *   *Windows:* Ensure `gcc` (via MinGW-w64 or similar) is configured in your system PATH.
+* **Go** (version 1.18 or higher recommended)
+* **CGO Dependencies:** Raylib-go requires a C compiler (like `gcc`) for compiling the underlying graphics bindings.
+    * *Ubuntu/Debian:* `sudo apt-get install alsa-utils libasound2-dev libx11-dev libxrandr-dev libxi-dev libxcursor-dev libxinerama-dev libxkbcommon-dev`
+    * *macOS:* Xcode Command Line Tools are required (`xcode-select --install`).
+    * *Windows:* Ensure `gcc` (via MinGW-w64 or similar) is configured in your system PATH.
 
 ## Getting Started
 
 1. Clone the repository:
-```bash
-   git clone [https://github.com/yourusername/boids-simulation.git](https://github.com/yourusername/boids-simulation.git)
-   cd boids-simulation
-```
+   ```bash
+   git clone [https://github.com/0nyon/Boids.git](https://github.com/0nyon/Boids.git)
+   cd Boids
 
 ## Acknowledgments & Resources
 
